@@ -1,5 +1,3 @@
-const path = require('path');
-
 exports.getHome = (req, res) => {
  res.send('zgeg');
 };

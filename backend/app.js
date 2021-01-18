@@ -5,6 +5,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
+const sauceRoutes = require('./routes/sauce');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/auth/', authRoutes);
+app.use('/api/sauce/', sauceRoutes);
 app.use('/', indexRoutes);
 
 module.exports = app;
