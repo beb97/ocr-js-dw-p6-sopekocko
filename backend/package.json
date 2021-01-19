@@ -15,7 +15,9 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "helmet": "^4.4.1",
     "jsonwebtoken": "^8.3.0",
+    "mongo-sanitize": "^1.1.0",
     "mongoose": "^5.3.8",
     "mongoose-unique-validator": "^2.0.3",
     "multer": "^1.4.2",
@@ -30,6 +32,7 @@
     "scripts:debug": "c'est ce script qui permet de lance l'appli en mode debug",
     "bcrypt": "pour encoder le password",
     "cors": "pour autoriser les requetes inter serveur",
-    "mongoose-unique-validator": "validator unique pour email"
+    "mongoose-unique-validator": "validator unique pour email",
+    "helmet": "ajout de header http pour la securite"
   }
 }

@@ -1,5 +1,6 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
+var sanitize = require('mongo-sanitize');
 
 exports.getAll = (req, res) => {
     console.log("sauce.getAll");
@@ -15,12 +16,12 @@ exports.add = (req, res) => {
 
     // FOR MAPPING COULD USE triple point : "...s"
     const sauce = new Sauce({
-        name: s.name,
-        manufacturer: s.manufacturer,
-        description: s.description,
-        mainPepper: s.mainPepper,
-        heat: s.heat,
-        description: s.description,
+        name: sanitize(s.name),
+        manufacturer: sanitize(s.manufacturer),
+        description: sanitize(s.description),
+        mainPepper: sanitize(s.mainPepper),
+        heat: sanitize(s.heat),
+        description: sanitize(s.description),
         imageUrl: image,
         likes: 0,
         dislikes: 0,
