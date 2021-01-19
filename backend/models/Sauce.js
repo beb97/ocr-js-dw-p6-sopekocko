@@ -4,6 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const sauceSchema = mongoose.Schema({
   name: { type: String, required: true, unique: true },
+  userId: { type: String, required: true },
   manufacturer: { type: String, required: true },
   description: { type: String, required: true },
   mainPepper: { type: String, required: true },

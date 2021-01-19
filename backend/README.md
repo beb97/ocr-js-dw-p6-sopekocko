@@ -21,6 +21,7 @@ Source : https://owasp.org/www-project-top-ten
     => mongo sanitize
 2 Broken Authentication. 
     => JWT
+    => (Http Only flag) for cookies containing token, not readable in js.
 3 Sensitive Data Exposure. 
     => masquage / bcrypt mdp
 4 XML External Entities (XXE). 
@@ -37,3 +38,11 @@ Source : https://owasp.org/www-project-top-ten
     => npm audit
 10 Insufficient Logging & Monitoring. 
     => pas de logs
+    
+### RESSOURCES UTILES ###
+JWT, localstorage et http-only cookie :
+https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81
+COOKIE :
+    http-only = not accessible by js
+    max-age = equal to jwt duration
+    secure = cookie only sent over https

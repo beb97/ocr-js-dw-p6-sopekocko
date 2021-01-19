@@ -5,7 +5,6 @@ const path = require('path');
 var cors = require('cors');
 
 const authRoutes = require('./routes/auth');
-const indexRoutes = require('./routes/index');
 const sauceRoutes = require('./routes/sauce');
 
 const app = express();
@@ -30,6 +29,5 @@ app.use(bodyParser.json());
 
 app.use('/api/auth/', authRoutes);
 app.use('/api/sauces/', sauceRoutes);
-app.use('/', indexRoutes);
 
 module.exports = app;
