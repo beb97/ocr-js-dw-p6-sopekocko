@@ -89,7 +89,7 @@ exports.like = (req, res) => {
     console.log("sauce.like");
 
     // const token = req.headers.authorization.split(' ')[1];
-    // const decoded = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // const userId = decoded.userId;
 
     Sauce.findOne({ _id: req.params.id })

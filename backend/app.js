@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+require('dotenv').config();
+
 var cors = require('cors');
 
 const authRoutes = require('./routes/auth');
@@ -10,7 +13,7 @@ const sauceRoutes = require('./routes/sauce');
 const app = express();
 
 mongoose.connect(
-  'mongodb+srv://sauce_w_r:piquante@cluster0.vm6sx.mongodb.net/piquante?retryWrites=true&w=majority',
+    process.env.DB_URL,
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
@@ -20,7 +23,14 @@ mongoose.connect(
     console.error(error);
   });
 
-app.use(cors());
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // = 15 minutes
+    max: 100
+})
+
+app.use(limiter);
+
+app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/images/', express.static(path.join(__dirname, 'images')));
 app.use(bodyParser.json());
