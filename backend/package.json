@@ -5,20 +5,31 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "debug": "nodemon --inspect server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.8",
-    "mongoose-unique-validator": "^2.0.2",
+    "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "EXPLICATIONS": {
+    "IMPORTANT": "CETTE SECTION EST LA POUR AIDER A COMPRENDRE CE FICHIER PACKAGE.JSON ",
+    "POUR UTILISER LE DEBUGGER": "Lancez l'appli avec 'npm run debug'. Port par défaut : 9229",
+    "scripts:debug": "c'est ce script qui permet de lance l'appli en mode debug",
+    "bcrypt": "pour encoder le password",
+    "cors": "pour autoriser les requetes inter serveur",
+    "mongoose-unique-validator": "validator unique pour email"
   }
 }
