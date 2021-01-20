@@ -1,53 +1,25 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-var sanitize = require('mongo-sanitize');
+const authService = require('../services/auth');
 
-const User = require('../models/User');
+exports.login = async function (req, res) {
+    console.log("auth.login");
+    const user =  req.body;
 
-exports.getAllCameras = (req, res, next) => {
-
+    try {
+        const message = await authService.login(user)
+        return res.status(200).json(message)
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
 };
 
-exports.login = (req, res, next) => {
-      console.log("auth.login");
+exports.signup = async function (req, res) {
+    console.log("auth.signup");
+    const user =  req.body;
 
-      User.findOne({ email: req.body.email })
-          .then(user => {
-                if (!user) {
-                      return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-                }
-
-                bcrypt.compare(req.body.password, user.password)
-                    .then(valid => {
-                          if (!valid) {
-                                return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                          }
-                          res.status(200).json({
-                                userId: user._id,
-                                token:  jwt.sign(
-                                    { userId: user._id },
-                                    process.env.JWT_SECRET,
-                                    { expiresIn: '24h' }
-                                )
-                          });
-                    })
-                    .catch(error => res.status(500).json({ error }));
-          })
-          .catch(error => res.status(500).json({ error }));
-};
-
-exports.signup = (req, res, next) => {
-      console.log("auth.signup");
-
-      bcrypt.hash(req.body.password, 10)
-          .then(hash => {
-                const user = new User({
-                      email: sanitize(req.body.email),
-                      password: hash
-                });
-                user.save()
-                    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                    .catch(error => res.status(400).json({ error }));
-          })
-          .catch(error => res.status(500).json({ error }));
+    try {
+        const newUser = await authService.signup(user)
+        return res.status(200).json(newUser)
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
 };
